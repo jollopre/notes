@@ -4,7 +4,7 @@ import {
 	Route,
 	Switch
 } from 'react-router-dom';
-import Toggle from './toggle';
+import NewNoteLink from './newNoteLink';
 import ListNote from './listNote';
 import NewNote from './newNote';
 import ShowNote from './showNote';
@@ -17,7 +17,7 @@ export default class IndexNote extends Component {
 				<div className="col-xs-4">
 					<div className="row">
 						<div className="col-xs-12">
-							<Toggle />
+							<NewNoteLink />
 						</div>
 						<div className="col-xs-12">
 							<ListNote list={list} />
