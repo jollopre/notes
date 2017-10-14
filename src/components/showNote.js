@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getDate, getTime } from '../utils/date';
  
 class ShowNote extends Component {
@@ -14,7 +14,15 @@ class ShowNote extends Component {
 					</p>
 				</div>
 				<div className="col-xs-12">
-					<h5>{note.title}</h5>
+					<div className="pull-left">
+						<h5>{note.title}</h5>
+					</div>
+					<div className="pull-right">
+						<Link to={`/notes/${note.id}/edit`} className="btn btn-default">
+							Edit Note
+						</Link>
+					</div>
+					<div className="clearfix" />
 				</div>
 				<div className="col-xs-12">
 					<p className="text-justify">{note.description}</p>
@@ -25,12 +33,12 @@ class ShowNote extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-	const id = Number(ownProps.match.params.id);
-	const note = state.notes.find(note => note.id === id);
+	const id = ownProps.match.params.id;
+	const note = state.notes.byId[id];
 	return { note };
 }
 
-export default withRouter(connect(mapStateToProps)(ShowNote));
+export default connect(mapStateToProps)(ShowNote);
 
 
 

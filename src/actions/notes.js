@@ -1,9 +1,19 @@
 export const CREATE_NOTE = 'CREATE_NOTE';
 export const UPDATE_NOTE = 'UPDATE_NOTE';
 
-export const createNote = ({ title = '', description = '' } = {}) => ({
+export const createNote = ({ title = null, description = null } = {}) => ({
 	type: CREATE_NOTE,
 	note: {
+		title,
+		description,
+		updated_at: Date.now()
+	},
+});
+
+export const updateNote = ({ id = null, title = null, description = null } = {}) => ({
+	type: UPDATE_NOTE,
+	note: {
+		id,
 		title,
 		description,
 		updated_at: Date.now()

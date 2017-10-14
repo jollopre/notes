@@ -1,15 +1,31 @@
-import { CREATE_NOTE } from '../actions/notes';
+import {
+	CREATE_NOTE,
+	UPDATE_NOTE } from '../actions/notes';
 
-const nextId = (notes) => {
-	return notes.reduce((max, note) => {
-		return note.id > max ? note.id : max;
+const nextId = (noteIds) => {
+	return noteIds.reduce((max, id) => {
+		const idConverted = Number(id);
+		return idConverted > max ? idConverted : max;
 	}, -1) + 1;
 };
 
-export const notes = (state = [], action) => {
+export const notes = (state = { byId: {} }, action) => {
 	switch(action.type) {
 		case CREATE_NOTE:
-			return state.concat(Object.assign({ id: nextId(state) }, action.note));
+			const id = nextId(Object.keys(state.byId));
+			return Object.assign(
+				{},
+				state,
+				{ byId: Object.assign(
+					{},
+					state.byId,
+					{ [id]: Object.assign({ id }, action.note) }) });
+		case UPDATE_NOTE:
+			const { note } = action;
+			return Object.assign(
+				{},
+				state,
+				{ byId: Object.assign({}, state.byId, { [note.id]: note }) });
 		default:
 			return state;
 	}

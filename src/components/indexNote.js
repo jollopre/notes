@@ -8,6 +8,7 @@ import NewNoteLink from './newNoteLink';
 import ListNote from './listNote';
 import NewNote from './newNote';
 import ShowNote from './showNote';
+import EditNote from './editNote';
 
 export default class IndexNote extends Component {
 	render() {
@@ -28,8 +29,9 @@ export default class IndexNote extends Component {
 					<div className="row">
 						<div className="col-xs-12">{
 							<Switch>
-								<Route path="/notes/new" component={NewNote} />
-								<Route path="/notes/:id([0-9]+)" component={ShowNote} />
+								<Route exact path="/notes/new" component={NewNote} />
+								<Route exact path="/notes/:id/edit" component={EditNote} />
+								<Route exact path="/notes/:id([0-9]+)" component={ShowNote} />
 							</Switch>
 							}
 						</div>

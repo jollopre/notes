@@ -10,8 +10,10 @@ class Note extends Component {
 }
 
 const mapStateToProps = (state) => {
-	const { notes } = state;
-	return { list: notes };
+	const { byId: notesById } = state.notes;
+	return { list: Object.keys(notesById).reduce((acc, key) => {
+		return acc.concat(notesById[key]);
+	}, []) };
 }
 
 export default connect(mapStateToProps)(Note);
