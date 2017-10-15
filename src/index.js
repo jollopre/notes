@@ -6,6 +6,7 @@ import { rootReducer } from './reducers';
 import { initialState } from './reducers/initialState';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 const store = createStore(rootReducer, initialState);
 

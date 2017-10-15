@@ -6,11 +6,11 @@ import { getDate } from '../utils/date';
 export default class ListItemNote extends Component {
 	render() {
 		const { item : note } = this.props;
-		// TODO add active class for a element
+		console.log(this.props);
 		return (
 			<Link to={`/notes/${note.id}`} className="list-group-item">
-				<h4>{note.title}</h4>
-				<p>{getDate(note.updated_at)}</p>
+				<p className="dark-grey reset-margin">{note.title}</p>
+				<p className="reset-margin">{getDate(note.updated_at)}</p>
 			</Link>
 		);
 	}
@@ -19,3 +19,4 @@ export default class ListItemNote extends Component {
 ListItemNote.propTypes = {
 	item: PropTypes.object.isRequired,
 }
+

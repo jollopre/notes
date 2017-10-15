@@ -6,7 +6,7 @@ export default class ListNote extends Component {
 	render() {
 		const { list } = this.props;
 		return (
-			<div className="list-group">
+			<div className="list-group reset-margin-bottom">
 				{list.map(item => (<ListItemNote key={item.id} item={item} />))}
 			</div>
 		);

@@ -8,8 +8,8 @@ export default class IndexNote extends Component {
 	render() {
 		const { list } = this.props;
 		return (
-			<div className="row">
-				<div className="col-xs-4">
+			<div className="row black-border">
+				<div className="col-xs-4 reset-padding-left">
 					<div className="row">
 						<div className="col-xs-12">
 							<NewNoteLink />

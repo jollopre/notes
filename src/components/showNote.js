@@ -10,13 +10,15 @@ class ShowNote extends Component {
 		return note ? 
 			(<div className="row">
 				<div className="col-xs-12">
-					<p className="text-center">
-						{`Last edited: ${getDate(note.updated_at)} at ${getTime(note.updated_at)}`}
+					<p className="text-center margin-top">
+						<small>
+							{`Last edited: ${getDate(note.updated_at)} at ${getTime(note.updated_at)}`}
+						</small>
 					</p>
 				</div>
 				<div className="col-xs-12">
 					<div className="pull-left">
-						<h5>{note.title}</h5>
+						<p className="slightly-dark-grey">{note.title}</p>
 					</div>
 					<div className="pull-right">
 						<Link to={`/notes/${note.id}/edit`} className="btn btn-default">
@@ -26,7 +28,7 @@ class ShowNote extends Component {
 					<div className="clearfix" />
 				</div>
 				<div className="col-xs-12">
-					<p className="text-justify">{note.description}</p>
+					<p className="text-justify slightly-dark-grey">{note.description}</p>
 				</div>
 			</div>) : (<NotFound />);
 	}
