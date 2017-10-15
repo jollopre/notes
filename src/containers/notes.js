@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import IndexNote from '../components/indexNote';
 
-class Note extends Component {
+class Notes extends Component {
 	render() {
 		const { list } = this.props;
-		return (<IndexNote list={list} />);
+		return (
+			<IndexNote list={list} />
+		);
 	}
 }
 
@@ -16,4 +18,4 @@ const mapStateToProps = (state) => {
 	}, []) };
 }
 
-export default connect(mapStateToProps)(Note);
+export default connect(mapStateToProps)(Notes);

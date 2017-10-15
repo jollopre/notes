@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getDate, getTime } from '../utils/date';
+import NotFound from './notFound';
  
 class ShowNote extends Component {
 	render() {
 		const { note } = this.props;
-		return (
-			<div className="row">
+		return note ? 
+			(<div className="row">
 				<div className="col-xs-12">
 					<p className="text-center">
 						{`Last edited: ${getDate(note.updated_at)} at ${getTime(note.updated_at)}`}
@@ -27,15 +28,13 @@ class ShowNote extends Component {
 				<div className="col-xs-12">
 					<p className="text-justify">{note.description}</p>
 				</div>
-			</div>
-		);
+			</div>) : (<NotFound />);
 	}
 }
 
 const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.match.params.id;
-	const note = state.notes.byId[id];
-	return { note };
+	return { note: state.notes.byId[id] };
 }
 
 export default connect(mapStateToProps)(ShowNote);

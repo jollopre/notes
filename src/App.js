@@ -6,7 +6,7 @@ import {
 	Redirect
 } from 'react-router-dom';
 
-import Note from './containers/note';
+import Notes from './containers/notes';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
     	<Router>
     		<div className="container">
     			<Switch>
-    				<Route path="/notes" component={Note} />
+    				<Route path="/notes" component={Notes} />
     				<Redirect from="/" to="/notes" />
     			</Switch>
       	</div>

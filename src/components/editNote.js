@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateNote } from '../actions/notes';
 import FormNote from './formNote';
+import NotFound from './notFound';
 
 class EditNote extends Component {
 	constructor() {
@@ -15,8 +16,8 @@ class EditNote extends Component {
 	}
 	render() {
 		const { note } = this.props;
-		return (
-			<div className="row">
+		return note ?
+			(<div className="row">
 				<div className="col-xs-12">
 					<h5>Edit Note</h5>
 				</div>
@@ -26,15 +27,12 @@ class EditNote extends Component {
 						onSubmit={this.onSubmit}
 					/>
 				</div>
-			</div>
-		);
+			</div>) : (<NotFound />);
 	}
 }
 const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.match.params.id;
-	return {
-		note: state.notes.byId[id]
-	}
+	return { note: state.notes.byId[id] }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
