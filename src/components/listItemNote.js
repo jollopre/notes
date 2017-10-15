@@ -6,7 +6,6 @@ import { getDate } from '../utils/date';
 export default class ListItemNote extends Component {
 	render() {
 		const { item : note } = this.props;
-		console.log(this.props);
 		return (
 			<Link to={`/notes/${note.id}`} className="list-group-item">
 				<p className="dark-grey reset-margin">{note.title}</p>
