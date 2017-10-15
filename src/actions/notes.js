@@ -1,5 +1,6 @@
 export const CREATE_NOTE = 'CREATE_NOTE';
 export const UPDATE_NOTE = 'UPDATE_NOTE';
+export const DESTROY_NOTE = 'DESTROY_NOTE';
 
 export const createNote = ({ title = null, description = null } = {}) => ({
 	type: CREATE_NOTE,
@@ -18,4 +19,9 @@ export const updateNote = ({ id = null, title = null, description = null } = {})
 		description,
 		updated_at: Date.now()
 	},
+});
+
+export const destroyNote = ({ id = null } = {}) => ({
+	type: DESTROY_NOTE,
+	id
 });

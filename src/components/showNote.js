@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getDate, getTime } from '../utils/date';
 import NotFound from './notFound';
+import DeleteNote from './deleteNote';
  
 class ShowNote extends Component {
 	render() {
@@ -21,9 +22,16 @@ class ShowNote extends Component {
 						<p className="slightly-dark-grey">{note.title}</p>
 					</div>
 					<div className="pull-right">
-						<Link to={`/notes/${note.id}/edit`} className="btn btn-default">
-							Edit Note
-						</Link>
+						<ul className="list-inline">
+							<li>
+								<Link to={`/notes/${note.id}/edit`} className="btn btn-default">
+									Edit Note
+								</Link>
+							</li>
+							<li>
+								<DeleteNote id={note.id} />
+							</li>
+						</ul>
 					</div>
 					<div className="clearfix" />
 				</div>

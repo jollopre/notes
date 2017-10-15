@@ -1,6 +1,7 @@
 import {
 	CREATE_NOTE,
-	UPDATE_NOTE } from '../actions/notes';
+	UPDATE_NOTE,
+	DESTROY_NOTE } from '../actions/notes';
 
 const nextId = (noteIds) => {
 	return noteIds.reduce((max, id) => {
@@ -25,7 +26,17 @@ export const notes = (state = { byId: {} }, action) => {
 			return Object.assign(
 				{},
 				state,
-				{ byId: Object.assign({}, state.byId, { [note.id]: note }) });
+				{ byId: Object.assign(
+					{},
+					state.byId,
+					{ [note.id]: note }) });
+		case DESTROY_NOTE:
+			const byId = Object.assign({}, state.byId);
+			delete byId[action.id];
+			return Object.assign(
+				{},
+				state,
+				{ byId });
 		default:
 			return state;
 	}
