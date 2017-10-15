@@ -23,5 +23,5 @@ export const updateNote = ({ id = null, title = null, description = null } = {})
 
 export const destroyNote = ({ id = null } = {}) => ({
 	type: DESTROY_NOTE,
-	id
+	id,
 });

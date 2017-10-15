@@ -7,7 +7,7 @@ const nextId = (noteIds) => {
 	return noteIds.reduce((max, id) => {
 		const idConverted = Number(id);
 		return idConverted > max ? idConverted : max;
-	}, -1) + 1;
+	}, 0) + 1;
 };
 
 export const notes = (state = { byId: {} }, action) => {
