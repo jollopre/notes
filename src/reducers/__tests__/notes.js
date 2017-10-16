@@ -7,7 +7,7 @@ import { notes } from '../notes';
 
 describe('notes reducer', () => {
 	it('should createNote', () => {
-		const action = createNote({ title: 'foo', 'description': 'bar' });
+		const action = createNote({ id: 1, title: 'foo', 'description': 'bar' });
 		const notesState = notes({ byId: {} }, action);
 		expect(notesState).toHaveProperty('byId.1');
 		expect(notesState).toHaveProperty('byId.1.id', 1);

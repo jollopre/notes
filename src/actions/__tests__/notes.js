@@ -9,10 +9,11 @@ import {
 
 describe('createNote action creator', () => {
     it('should return action CREATE_NOTE given title and description', () => {
-        const action = createNote({ title: 'foo', 'description': 'bar' });
+        const action = createNote({ id: 1, title: 'foo', 'description': 'bar' });
 
         expect(action).toHaveProperty('type', CREATE_NOTE);
         expect(action).toHaveProperty('note');
+        expect(action).toHaveProperty('note.id', 1);
         expect(action).toHaveProperty('note.title', 'foo');
         expect(action).toHaveProperty('note.description', 'bar');
         expect(action).toHaveProperty('note.updated_at');

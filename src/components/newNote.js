@@ -9,9 +9,9 @@ class NewNote extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
  	onSubmit({ title, description }) {
- 		const { createNote, history } = this.props;
- 		createNote({ title, description });
- 		history.push('/notes');
+ 		const { createNote, history, nextId } = this.props;
+ 		createNote({ id: nextId, title, description });
+ 		history.push(`/notes/${nextId}`);
 	}
 	render() {
 		return (
@@ -30,12 +30,22 @@ class NewNote extends Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	const { notes } = state;
+	return {
+		nextId: (Object.keys(notes.byId).reduce((max, id) => {
+			const idConverted = Number(id);
+			return idConverted > max ? idConverted : max;
+		}, 0) + 1)
+	};
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
-		createNote: ({ title, description }) => {
-			return dispatch(createNote({ title, description }));
+		createNote: ({ id, title, description }) => {
+			return dispatch(createNote({ id, title, description }));
 		}
 	}
 };
 
-export default connect(null, mapDispatchToProps)(NewNote);
+export default connect(mapStateToProps, mapDispatchToProps)(NewNote);
