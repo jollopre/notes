@@ -8,13 +8,23 @@ class ListNote extends Component {
 		super();
 		this.state = { active: -1 };
 	}
-	componentDidMount() {
-		const { location } = this.props;
+	_getActiveFromURL(props) {
+		const { location } = props;
 		const regex = /\/notes\/([0-9]+)(?:\/edit|$)/;
 		const active = location.pathname.match(regex);
+		return active ? Number(active[1]) : null;
+	}
+	componentDidMount() {
+		const active = this._getActiveFromURL(this.props);
 		if (active) {
-			this.setState({ active: Number(active[1]) });
+			this.setState({ active });
 		}
+	}
+	componentWillReceiveProps(nextProps) {
+		const active = this._getActiveFromURL(nextProps);
+		if (active && active !== this.state.active) {
+			this.setState({ active });
+		} 
 	}
 	render() {
 		const { list } = this.props;
